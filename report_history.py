@@ -1,10 +1,5 @@
-from numpy import NaN
+from matplotlib import pyplot as plt
 import pandas as pd
-from datetime import datetime
-import matplotlib.dates
-import matplotlib.pyplot
-import numpy as np
-
 
 FILE_EXTENSION = "ReportHistory.xlsx"
 NEXT_TABLE = "Orders"
@@ -56,9 +51,9 @@ class Data:
                 losses.pop(i)
                 time.pop(i)
 
-        matplotlib.pyplot.plot(time, losses, linestyle="", marker="o")
-        matplotlib.pyplot.title("Losses")
-        matplotlib.pyplot.show()
+        plt.plot(time, losses, linestyle="", marker="o")
+        plt.title("Losses")
+        plt.show()
 
     def plot_wins(self):
         wins = self.closed_position_profits.copy()
@@ -69,9 +64,9 @@ class Data:
                 wins.pop(i)
                 time.pop(i)
 
-        matplotlib.pyplot.plot(time, wins, linestyle="", marker="o")
-        matplotlib.pyplot.title("Wins")
-        matplotlib.pyplot.show()
+        plt.plot(time, wins, linestyle="", marker="o")
+        plt.title("Wins")
+        plt.show()
 
 
 data = Data(FILE_EXTENSION)
