@@ -42,34 +42,24 @@ class Data:
 
         # matplotlib.pyplot.yscale("log")
 
-    def plot_losses(self):
-        losses = self.closed_position_profits.copy()
+    def plot_wins_or_losses(self, wins_or_losses):
+        trades = self.closed_position_profits.copy()
         time = self.closed_position_time.copy()
 
         for i, element in enumerate(self.closed_position_profits):
-            if element > 0:
-                losses.pop(i)
+            if wins_or_losses == "Wins" and element < 0:
+                trades.pop(i)
+                time.pop(i)
+            if wins_or_losses == "Losses" and element > 0:
+                trades.pop(i)
                 time.pop(i)
 
-        plt.plot(time, losses, linestyle="", marker="o")
-        plt.title("Losses")
-        plt.show()
-
-    def plot_wins(self):
-        wins = self.closed_position_profits.copy()
-        time = self.closed_position_time.copy()
-
-        for i, element in enumerate(self.closed_position_profits):
-            if element < 0:
-                wins.pop(i)
-                time.pop(i)
-
-        plt.plot(time, wins, linestyle="", marker="o")
-        plt.title("Wins")
+        plt.plot(time, trades, linestyle="", marker="o")
+        plt.title(wins_or_losses)
         plt.show()
 
 
 data = Data(FILE_EXTENSION)
 data.plot_cumulative_profits()
-data.plot_wins()
-data.plot_losses()
+data.plot_wins_or_losses("Wins")
+data.plot_wins_or_losses("Losses")
