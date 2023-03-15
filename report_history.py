@@ -36,9 +36,9 @@ class Data:
         return cumulative_profits
 
     def plot_cumulative_profits(self):
-        matplotlib.pyplot.plot(self.closed_position_time, self.cumulative_profits)
-        matplotlib.pyplot.title("Cumulative P/L")
-        matplotlib.pyplot.show()
+        plt.plot(self.closed_position_time, self.cumulative_profits)
+        plt.title("Cumulative P/L")
+        plt.show()
 
         # matplotlib.pyplot.yscale("log")
 
